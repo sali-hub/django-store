@@ -41,3 +41,12 @@ def product_edit(request, pk):
         return render(request, 'products/product-add.html', {'form' : form})
     else:
         return redirect('products_list')
+
+        
+def product_delete(request, pk):
+    if request.user.is_authenticated and request.user.is_superuser:
+        product = get_object_or_404(Product, pk=pk)
+        product.delete()
+        return redirect('products_list')
+    else:
+        return redirect('products_list')
