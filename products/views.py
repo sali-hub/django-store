@@ -15,15 +15,14 @@ def product_details(request, pk):
 
 def product_add(request):
     if request.user.is_authenticated and  request.user.is_superuser:
-        if request.user.is_superuser:
            if request.method == 'POST':
               form = AddProductForm(request.POST, request.FILES)
               if form.is_valid():
                  form.save()
                  return render(request,'products/product-add-successful.html')
-        else:
-            form = AddProductForm()
-        return render(request, 'products/product-add.html', {'form' : form})
+              else:
+                 form = AddProductForm()
+                 return render(request, 'products/product-add.html', {'form' : form})
     else:
          return redirect('products_list')    
 
