@@ -6,12 +6,17 @@ from products.models import Product
 
 User = get_user_model()
 
-class cart(models.Model):
+class Cart(models.Model):
     user = models.OneToOneField(User, related_name='cart', on_delete=models.CASCADE)
     items = models.ManyToManyField(Product)
     updated_at = models.DateTimeField(auto_now=True)
 
-
+    def total_price(self):
+        total = 0
+        for item in self.items.all():
+            total += item.price 
+        return total
+     
     def __str__(self):
         return str(self.user)
 
