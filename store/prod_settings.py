@@ -6,7 +6,13 @@ from .settings import *
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-DEBUG = True
+debug_option = os.environ.get('DEBUG').lower()
+if debug_option == 'true' :
+    DEBUG = True
+else:
+    DEBUG = False
+
+ 
 
 ALLOWED_HOSTS = ['young-garden-54821.herokuapp.com']
 
