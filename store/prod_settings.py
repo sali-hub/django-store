@@ -16,7 +16,7 @@ else:
 
 ALLOWED_HOSTS = ['young-garden-54821.herokuapp.com']
 
-DATABASE_URL = {
+DATABASES = {
     'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 } 
 
